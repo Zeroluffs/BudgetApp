@@ -1,17 +1,30 @@
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext} from "react";
+import { useRouter } from 'next/router'
 import Link from "next/link";
+import { logUser } from "../services/api/auth/Login";
+import { AuthContext } from "../context/auth";
 
 export default function Home() {
+  const context = useContext(AuthContext);
+  const router = useRouter();
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const userInfo = {
+      username: e.target.elements.username?.value,
+      password: e.target.elements.password?.value,
+    };
+
+    const loggedUser = logUser(userInfo);
+    context.login(loggedUser);
+    router.push("/mainpage");
+  };
   return (
     <div className="relative flex flex-col min-h-screen overflow-hidden justify-ceter">
       <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl shadow-slate-200 lg:max-w-xl">
         <h1 className="text-3xl font-semibold text-center text-blue-500 uppercase ">
           Sign in
         </h1>
-        <form className="mt-6">
+        <form className="mt-6" onSubmit={onSubmit}>
           <div className="mb-2">
             <label
               htmlFor="email"
@@ -20,18 +33,20 @@ export default function Home() {
               Email
             </label>
             <input
-              type="email"
+              id="username"
+              type="text"
               className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
             />
           </div>
           <div className="mb-2">
             <label
-              for="password"
+              htmlForfor="password"
               className="block text-sm font-semibold text-gray-800"
             >
               Password
             </label>
             <input
+              id="password"
               type="password"
               className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
             />
