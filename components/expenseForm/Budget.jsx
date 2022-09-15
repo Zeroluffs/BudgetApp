@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../context/auth";
 
 const InlineEdit = ({ value, setValue }) => {
   const [editingValue, setEditingValue] = useState(value);
@@ -33,6 +34,11 @@ const InlineEdit = ({ value, setValue }) => {
 };
 
 export function Budget() {
+  const context = useContext(AuthContext);
+  console.log("hello editing");
+  console.log(context.initialState);
+  context.initialState.user.budget = 3333;
+  console.log(context.initialState);
   const [value, setValue] = useState(0);
   return (
     <div>

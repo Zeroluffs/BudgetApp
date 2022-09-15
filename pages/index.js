@@ -1,5 +1,5 @@
-import { useState, useEffect, useContext} from "react";
-import { useRouter } from 'next/router'
+import { useState, useEffect, useContext } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import { logUser } from "../services/api/auth/Login";
 import { AuthContext } from "../context/auth";
@@ -14,9 +14,13 @@ export default function Home() {
       password: e.target.elements.password?.value,
     };
 
-    const loggedUser = logUser(userInfo);
-    context.login(loggedUser);
-    router.push("/mainpage");
+    const loggingOn = async (userInfo) => {
+      const loggedUser = await logUser(userInfo);
+
+      context.login(loggedUser);
+      router.push("/mainpage");
+    };
+    loggingOn(userInfo);
   };
   return (
     <div className="relative flex flex-col min-h-screen overflow-hidden justify-ceter">
@@ -40,7 +44,7 @@ export default function Home() {
           </div>
           <div className="mb-2">
             <label
-              htmlForfor="password"
+              htmlFor="password"
               className="block text-sm font-semibold text-gray-800"
             >
               Password

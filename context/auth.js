@@ -1,19 +1,10 @@
-import React, { useReducer, createContext } from "react";
+import React, { useReducer, createContext, useEffect } from "react";
 import jwtDecode from "jwt-decode";
 
 const initialState = {
   user: null,
 };
 
-if (localStorage.getItem("jwtToken")) {
-  const decodedToken = jwtDecode(localStorage.getItem("jwtToken"));
-
-  if (decodedToken.exp * 1000 < Date.now()) {
-    localStorage.removeItem("jwtToken");
-  } else {
-    initialState.user = decodedToken;
-  }
-}
 
 const AuthContext = createContext({
   user: null,
@@ -43,9 +34,18 @@ function AuthProvider(props) {
 
   function login(userData) {
     localStorage.setItem("jwtToken", userData.token);
+    if (localStorage.getItem("jwtToken")) {
+      const decodedToken = jwtDecode(localStorage.getItem("jwtToken"));
+      if (decodedToken.exp * 1000 < Date.now()) {
+        localStorage.removeItem("jwtToken");
+      } else {
+        initialState.user = Object.assign(decodedToken);
+      }
+    }
+
     dispatch({
       type: "LOGIN",
-      payload: userData,
+      payload: userData.token,
     });
   }
 
@@ -56,7 +56,7 @@ function AuthProvider(props) {
 
   return (
     <AuthContext.Provider
-      value={{ user: state.user, login, logout }}
+      value={{ user: state.user, login, logout,initialState }}
       {...props}
     />
   );
