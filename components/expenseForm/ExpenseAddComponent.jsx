@@ -1,13 +1,19 @@
+import { useDispatch, useSelector } from "react-redux";
+import { addExpense } from "../../slices/expenses";
+
 export function ExpenseAddComponent() {
-  const handleSubmit = (e) => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e.target.elements.expense_name.value);
     const obj = {
-      index: 0,
       name: e.target.elements.expense_name.value,
-      cost: e.target.elements.expense_name.cost,
+      cost: e.target.elements.expense_cost.value,
     };
-    setExpenses((oldArray) => [...oldArray, obj]);
+
+    const response = await dispatch(addExpense(obj)).unwrap();
+    e.target.elements.expense_name.value = '';
+    e.target.elements.expense_cost.value = 0;
   };
   return (
     <form onSubmit={handleSubmit}>

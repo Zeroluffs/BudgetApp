@@ -1,6 +1,11 @@
-import { useState } from "react";
-
-const ExpensesTable = ({ expenses }) => {
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectAllExpenses,
+  deleteExpense,
+  fetchExpenses,
+} from "../../slices/expenses";
+const ExpensesTable = ({ expenses, deleteExp }) => {
   return (
     <table id="expenses_table" className="table w-full">
       <thead>
@@ -29,21 +34,27 @@ const ExpensesTable = ({ expenses }) => {
         ) : (
           ""
         )}{" "}
-        {expenses.map((expenses, index) => {
-          return <ExpenseItem key={index} expense={expenses} index={index} />;
+        {expenses.map((expenses) => {
+          return (
+            <ExpenseItem
+              key={expenses.id}
+              expense={expenses}
+              deleteExp={deleteExp}
+            />
+          );
         })}
       </tbody>
     </table>
   );
 };
 
-const ExpenseItem = ({ expense, index }) => {
+const ExpenseItem = ({ expense, deleteExp }) => {
   return (
     <tr
-      key={index}
+      key={expense.id}
       className={"transition duration-300  odd:bg-blue-100 even:bg-blue-50"}
     >
-      <td className="px-1 py-2 text-center text-orange-800">{index + 1}</td>
+      <td className="px-1 py-2 text-center text-orange-800">{expense.id}</td>
       <td className="px-1 py-2 text-orange-800 ">{expense.name}</td>
       <td className="px-1 py-2 text-orange-800 ">{expense.cost}</td>
       <td className="flex justify-start gap-3 px-1 py-2 text-center text-orange-800">
@@ -64,7 +75,16 @@ const ExpenseItem = ({ expense, index }) => {
           </svg>
         </button>
 
-        <button className="text-orange-600">
+        <button
+          onClick={(e) => {
+            const apiCall = async (expenseID) => {
+              await deleteExp(expenseID);
+            };
+
+            apiCall(expense._id);
+          }}
+          className="text-orange-600"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-6 h-6"
@@ -86,13 +106,26 @@ const ExpenseItem = ({ expense, index }) => {
 };
 
 export function TableComponent() {
-  const [expenses, setExpenses] = useState([]);
+  const expenses = useSelector(selectAllExpenses);
+  const dispatch = useDispatch();
+  console.log("all", expenses);
+  const deleteExp = async (expenseID) => {
+    const apiCall = async (expenseID) => {
+      try {
+        await dispatch(deleteExpense(expenseID)).unwrap();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    await apiCall(expenseID);
+  };
 
+  
   return (
     <div className="container w-full max-w-2xl">
       <div className="p-5 mt-5 text-gray-700 bg-gray-100 shadow-lg rounded-xl">
         <div className="overflow-y-auto max-h-80">
-          <ExpensesTable expenses={expenses} />
+          <ExpensesTable expenses={expenses} deleteExp={deleteExp} />
         </div>
       </div>
     </div>

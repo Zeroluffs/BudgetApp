@@ -3,8 +3,11 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { AuthContext } from "../../context/auth";
 import { logUser } from "../../services/api/auth/Login";
+import { useDispatch } from "react-redux";
+import { fetchExpenses } from "../../slices/expenses";
 
 export function LogInComponent() {
+  const dispatch = useDispatch();
   const context = useContext(AuthContext);
   const { loadUser } = context;
   const router = useRouter();
@@ -19,6 +22,7 @@ export function LogInComponent() {
       const loggedUser = await logUser(userInfo);
 
       context.login(loggedUser);
+      dispatch(fetchExpenses()).unwrap();
       router.push("/mainpage");
     };
     loggingOn(userInfo);
