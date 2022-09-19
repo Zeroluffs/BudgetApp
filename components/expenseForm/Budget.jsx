@@ -37,18 +37,12 @@ const InlineEdit = ({ value, setValue }) => {
 };
 
 export function Budget() {
-  // const {user} = useContext(AuthContext);
   const { user, loadUser } = useContext(AuthContext);
-  // console.log("hello editing");
-  // console.log(context.initialState);
-  // context.initialState.user.budget = 3333;
-  // console.log(context.initialState);
+
   const [value, setValue] = useState(user?.budget);
   const [idk, setIdk] = useState(0);
   useEffect(() => {
-    console.log("changed", user?.budget);
     if (user?.budget !== undefined) {
-      console.log("WORK");
       setValue(user?.budget);
       setIdk(user?.budget);
       console.log(idk);
@@ -62,7 +56,6 @@ export function Budget() {
 
   return (
     <div>
-      {idk}
       <lable htmlFor="budget" className="m-auto ml-20 text-2xl font-semibold">
         Budget
       </lable>
