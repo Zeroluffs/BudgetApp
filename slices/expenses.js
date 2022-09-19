@@ -60,7 +60,9 @@ const expensesSlice = createSlice({
       })
       .addCase(fetchExpenses.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.expenses = state.expenses.concat(action.payload);
+        if (state.expenses.length === 0) {
+          state.expenses = state.expenses.concat(action.payload);
+        }
       })
       .addCase(fetchExpenses.rejected, (state, action) => {
         state.status = "failed";

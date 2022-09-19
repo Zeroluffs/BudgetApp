@@ -108,6 +108,9 @@ const ExpenseItem = ({ expense, deleteExp }) => {
 export function TableComponent() {
   const expenses = useSelector(selectAllExpenses);
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchExpenses()).unwrap();
+  }, []);
   console.log("all", expenses);
   const deleteExp = async (expenseID) => {
     const apiCall = async (expenseID) => {

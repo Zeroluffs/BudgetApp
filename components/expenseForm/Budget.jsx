@@ -40,14 +40,11 @@ export function Budget() {
   const { user, loadUser } = useContext(AuthContext);
 
   const [value, setValue] = useState(user?.budget);
-  const [idk, setIdk] = useState(0);
   useEffect(() => {
     if (user?.budget !== undefined) {
       setValue(user?.budget);
-      setIdk(user?.budget);
-      console.log(idk);
     }
-  }, [user, idk]);
+  }, [user]);
 
   useEffect(() => {
     loadUser();
