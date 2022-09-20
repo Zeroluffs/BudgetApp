@@ -73,7 +73,7 @@ export function ExpenseAddComponent({
         </lable>
         <input
           key={expenseToEdit.name}
-          autofocus={true}
+          autoFocus={true}
           id="expense_name"
           type="text"
           defaultValue={expenseToEdit.name}

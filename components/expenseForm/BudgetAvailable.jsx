@@ -1,11 +1,16 @@
+import { useEffect, useState } from "react";
 import { selectAllExpenses } from "../../slices/expenses";
 import { useSelector } from "react-redux";
 import jwtDecode from "jwt-decode";
 import { CurrencyFormatter } from "../../utils/CurrencyFormater";
 
 export function BudgetAvailable() {
-  const decodedToken = jwtDecode(localStorage.getItem("jwtToken"));
-  const budget = decodedToken.budget;
+  const [decodedToken, setDecodedToken] = useState(null);
+  useEffect(() => {
+    setDecodedToken(jwtDecode(localStorage.getItem("jwtToken")));
+  }, []);
+
+  const budget = decodedToken?.budget;
   let expenses = useSelector(selectAllExpenses);
 
   let remaining = expenses.reduce((acc, expense) => {
