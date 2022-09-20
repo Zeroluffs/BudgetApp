@@ -1,10 +1,16 @@
 import { useState } from "react";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { addExpense } from "../../slices/expenses";
 
-export function ExpenseAddComponent({ setMode, expenseToEdit, editMode }) {
+export function ExpenseAddComponent({
+  setMode,
+  expenseToEdit,
+  editMode,
+  setExpense,
+}) {
   const dispatch = useDispatch();
- 
+  const [expenseAuto, setExpenseAuto] = useState(expenseToEdit);
+  console.log(expenseToEdit);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const obj = {
@@ -12,7 +18,7 @@ export function ExpenseAddComponent({ setMode, expenseToEdit, editMode }) {
       cost: e.target.elements.expense_cost.value,
     };
 
-    const response = await dispatch(addExpense(obj)).unwrap();
+    await dispatch(addExpense(obj)).unwrap();
     e.target.elements.expense_name.value = "";
     e.target.elements.expense_cost.value = 0;
   };
@@ -33,6 +39,11 @@ export function ExpenseAddComponent({ setMode, expenseToEdit, editMode }) {
       <button
         onClick={(e) => {
           setMode(false);
+          setExpense({
+            _id: "",
+            name: "",
+            cost: 0,
+          });
         }}
         className="w-40 mx-20 mt-8 text-xl text-white bg-red-500 rounded-full h-9"
       >
@@ -61,8 +72,11 @@ export function ExpenseAddComponent({ setMode, expenseToEdit, editMode }) {
           Expense Name
         </lable>
         <input
+          key={expenseToEdit.name}
+          autofocus={true}
           id="expense_name"
           type="text"
+          defaultValue={expenseToEdit.name}
           className="block py-2 pl-2 text-lg text-black border-2 border-gray-300 rounded-md w-80 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-0"
         ></input>
       </div>
@@ -72,8 +86,10 @@ export function ExpenseAddComponent({ setMode, expenseToEdit, editMode }) {
           Cost
         </label>
         <input
+          key={expenseToEdit.cost}
           id="expense_cost"
           type="number"
+          defaultValue={expenseToEdit.cost}
           className="block py-2 pl-6 text-lg text-black border-2 border-gray-300 rounded-md w-80 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-0"
         ></input>
         <p className="absolute bottom-2.5 left-3 text-lg font-bold">$</p>

@@ -9,7 +9,7 @@ export default function MainPage() {
   const [expenseToEdit, setExpenseToEdit] = useState({
     _id: "",
     name: "",
-    cost: 1,
+    cost: 0,
   });
   const dispatch = useDispatch();
 
@@ -20,6 +20,7 @@ export default function MainPage() {
         setMode={(mode) => setEditMode(mode)}
         expenseToEdit={expenseToEdit}
         editMode={editMode}
+        setExpense={(expenseToEdit) => setExpenseToEdit(expenseToEdit)}
       />
       <TableComponent
         setMode={(mode) => setEditMode(mode)}
