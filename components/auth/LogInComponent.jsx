@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import {  useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { AuthContext } from "../../context/auth";
@@ -9,7 +9,6 @@ import { fetchExpenses } from "../../slices/expenses";
 export function LogInComponent() {
   const dispatch = useDispatch();
   const context = useContext(AuthContext);
-  const { loadUser } = context;
   const router = useRouter();
   const onSubmit = (e) => {
     e.preventDefault();
@@ -30,6 +29,7 @@ export function LogInComponent() {
 
   useEffect(() => {
     context.loadUser();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

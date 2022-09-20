@@ -49,6 +49,7 @@ export function Budget() {
   useEffect(() => {
     loadUser();
     setValue(user?.budget);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

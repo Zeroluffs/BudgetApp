@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { addExpense } from "../../slices/expenses";
 
 export function ExpenseAddComponent({ setMode, expenseToEdit, editMode }) {
   const dispatch = useDispatch();
-  const [editState, setEditState] = useState(false);
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const obj = {
