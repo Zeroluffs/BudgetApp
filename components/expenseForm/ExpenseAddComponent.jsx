@@ -1,9 +1,10 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addExpense } from "../../slices/expenses";
 
-export function ExpenseAddComponent() {
+export function ExpenseAddComponent({ setMode, expenseToEdit, editMode }) {
   const dispatch = useDispatch();
-
+  const [editState, setEditState] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const obj = {
@@ -12,9 +13,47 @@ export function ExpenseAddComponent() {
     };
 
     const response = await dispatch(addExpense(obj)).unwrap();
-    e.target.elements.expense_name.value = '';
+    e.target.elements.expense_name.value = "";
     e.target.elements.expense_cost.value = 0;
   };
+
+  const SubmitButton = () => {
+    return (
+      <button
+        type="submit"
+        className="w-40 mx-20 mt-8 text-xl text-white bg-blue-500 rounded-full h-9"
+      >
+        Add Expense
+      </button>
+    );
+  };
+
+  const CancelButton = () => {
+    return (
+      <button
+        onClick={(e) => {
+          setMode(false);
+        }}
+        className="w-40 mx-20 mt-8 text-xl text-white bg-red-500 rounded-full h-9"
+      >
+        Cancel
+      </button>
+    );
+  };
+
+  const EditButtons = () => {
+    return (
+      <div>
+        <div>
+          <SubmitButton />
+        </div>
+        <div>
+          <CancelButton />
+        </div>
+      </div>
+    );
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -39,14 +78,7 @@ export function ExpenseAddComponent() {
         ></input>
         <p className="absolute bottom-2.5 left-3 text-lg font-bold">$</p>
       </div>
-      <div>
-        <button
-          type="submit"
-          className="w-40 mx-20 mt-8 text-xl text-white bg-blue-500 rounded-full h-9"
-        >
-          Add Expense
-        </button>
-      </div>
+      <div>{!editMode ? <SubmitButton /> : <EditButtons />}</div>
     </form>
   );
 }

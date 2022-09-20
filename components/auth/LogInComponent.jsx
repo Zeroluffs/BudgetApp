@@ -29,7 +29,6 @@ export function LogInComponent() {
   };
 
   useEffect(() => {
-    console.log("hi");
     context.loadUser();
   }, []);
 
