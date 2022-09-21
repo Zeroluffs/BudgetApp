@@ -73,7 +73,7 @@ const ExpenseItem = ({ expense, deleteExp, editExp }) => {
 
             editExp(expenseObject);
           }}
-          className="text-orange-600"
+          className="text-blue-900"
         >
           <EditIcon />
         </button>
