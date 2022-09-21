@@ -27,7 +27,7 @@ export function ExpenseAddComponent({
     return (
       <button
         type="submit"
-        className="w-40 mx-20 mt-8 text-xl text-white bg-blue-500 rounded-full h-9"
+        className="w-40 mx-20 mt-8 text-xl text-white transition-colors duration-200 bg-blue-500 rounded-full hover:bg-blue-600 h-9"
       >
         Add Expense
       </button>
@@ -45,7 +45,7 @@ export function ExpenseAddComponent({
             cost: 0,
           });
         }}
-        className="w-40 mx-20 mt-8 text-xl text-white bg-red-500 rounded-full h-9"
+        className="w-40 mx-20 mt-8 text-xl text-white transition-colors duration-200 bg-red-500 rounded-full hover:bg-red-700 h-9"
       >
         Cancel
       </button>
