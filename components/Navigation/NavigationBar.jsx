@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../context/auth";
-
+import { Switcher } from "../darkmode/Switcher";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -10,8 +10,7 @@ export function NavigationBar({ fixed }) {
   const context = useContext(AuthContext);
   const router = useRouter();
 
-  useEffect(() => {
-  }, [context]);
+  useEffect(() => {}, [context]);
 
   const logOut = (e) => {
     e.preventDefault();
@@ -61,7 +60,7 @@ export function NavigationBar({ fixed }) {
   return (
     <>
       <header>
-        <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 mb-3 bg-blue-500">
+        <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 mb-3 bg-blue-500 dark:bg-slate-800">
           <div className="container flex flex-wrap items-center justify-between px-4 mx-auto">
             <div className="relative flex justify-between w-full lg:w-auto lg:static lg:block lg:justify-start">
               <a className="inline-block py-2 mr-4 text-sm font-bold leading-relaxed text-white uppercase whitespace-nowrap">
@@ -76,6 +75,7 @@ export function NavigationBar({ fixed }) {
               id="example-navbar-danger"
             >
               <PagesComponent />
+              <Switcher />
             </div>
           </div>
         </nav>
