@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../context/auth";
+import { CurrencyFormatter } from "../../utils/CurrencyFormater";
 
 const InlineEdit = ({ value, setValue }) => {
   const [editingValue, setEditingValue] = useState(value);
@@ -49,15 +50,18 @@ export function Budget() {
   useEffect(() => {
     loadUser();
     setValue(user?.budget);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div>
+    <div className="relative">
       <lable htmlFor="budget" className="m-auto ml-20 text-2xl font-semibold">
         Budget
       </lable>
       {value !== undefined && <InlineEdit value={value} setValue={setValue} />}
+     
+      <p className="absolute text-xl text-orange-500 bottom-12 left-3">$</p>
+
     </div>
   );
 }

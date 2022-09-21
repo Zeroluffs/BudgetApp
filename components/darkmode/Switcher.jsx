@@ -14,6 +14,6 @@ export function Switcher() {
   };
 
   return (
-    <DarkModeSwitch checked={darkSide} onChange={toggleDarkMode} size={56} />
+    <DarkModeSwitch checked={darkSide} onChange={toggleDarkMode} size={36} />
   );
 }
