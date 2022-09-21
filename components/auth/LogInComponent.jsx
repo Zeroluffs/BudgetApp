@@ -1,4 +1,4 @@
-import {  useEffect, useContext } from "react";
+import { useContext } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { AuthContext } from "../../context/auth";
@@ -27,10 +27,7 @@ export function LogInComponent() {
     loggingOn(userInfo);
   };
 
-  // useEffect(() => {
-  //   context.loadUser();
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+ 
 
   return (
     <div className="relative flex flex-col min-h-screen overflow-hidden justify-ceter">
