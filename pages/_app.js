@@ -6,12 +6,14 @@ import { NavigationBar } from "../components/Navigation/NavigationBar";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <AuthProvider>
-      <Provider store={store}>
-        <NavigationBar />
-        <Component {...pageProps} />
-      </Provider>
-    </AuthProvider>
+    <div className="dark:bg-gray-600">
+      <AuthProvider>
+        <Provider store={store}>
+          <NavigationBar />
+          <Component {...pageProps} />
+        </Provider>
+      </AuthProvider>
+    </div>
   );
 }
 

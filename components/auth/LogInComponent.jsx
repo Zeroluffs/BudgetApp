@@ -31,7 +31,7 @@ export function LogInComponent() {
 
   return (
     <div className="relative flex flex-col min-h-screen overflow-hidden justify-ceter">
-      <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl shadow-slate-200 lg:max-w-xl">
+      <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl dark:bg-slate-800 shadow-slate-200 dark:shadow-slate-500 lg:max-w-xl">
         <h1 className="text-3xl font-semibold text-center text-blue-500 uppercase ">
           Sign in
         </h1>
