@@ -3,6 +3,7 @@ import jwtDecode from "jwt-decode";
 
 const initialState = {
   user: null,
+  isLoggedIn: false,
 };
 
 const AuthContext = createContext({
@@ -18,11 +19,13 @@ function authReducer(state, action) {
       return {
         ...state,
         user: action.payload,
+        isLoggedIn: true,
       };
     case "LOGOUT":
       return {
         ...state,
         user: null,
+        isLoggedIn: false,
       };
     default:
       return state;
@@ -31,6 +34,7 @@ function authReducer(state, action) {
 
 function AuthProvider(props) {
   const [state, dispatch] = useReducer(authReducer, initialState);
+  const setLoginSuccess = (isLoggedIn) => setState({ isLoggedIn });
 
   function login(userData) {
     localStorage.setItem("jwtToken", userData.token);
@@ -71,7 +75,14 @@ function AuthProvider(props) {
 
   return (
     <AuthContext.Provider
-      value={{ user: state.user, login, logout, initialState, loadUser }}
+      value={{
+        user: state.user,
+        isLoggedIn: state.isLoggedIn,
+        login,
+        logout,
+        initialState,
+        loadUser,
+      }}
       {...props}
     />
   );

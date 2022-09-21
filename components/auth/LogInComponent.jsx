@@ -27,10 +27,10 @@ export function LogInComponent() {
     loggingOn(userInfo);
   };
 
-  useEffect(() => {
-    context.loadUser();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   context.loadUser();
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <div className="relative flex flex-col min-h-screen overflow-hidden justify-ceter">
