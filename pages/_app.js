@@ -6,7 +6,7 @@ import { NavigationBar } from "../components/Navigation/NavigationBar";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div className="dark:bg-gray-600">
+    <div className="dark:bg-slate-800 bg-slate-200">
       <AuthProvider>
         <Provider store={store}>
           <NavigationBar />

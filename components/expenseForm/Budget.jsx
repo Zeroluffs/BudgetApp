@@ -55,13 +55,15 @@ export function Budget() {
 
   return (
     <div className="relative">
-      <lable htmlFor="budget" className="m-auto ml-20 text-2xl font-semibold">
+      <lable
+        htmlFor="budget"
+        className="m-auto ml-20 text-2xl font-semibold dark:text-slate-300"
+      >
         Budget
       </lable>
       {value !== undefined && <InlineEdit value={value} setValue={setValue} />}
-     
-      <p className="absolute text-xl text-orange-500 bottom-12 left-3">$</p>
 
+      <p className="absolute text-xl text-orange-500 bottom-12 left-3">$</p>
     </div>
   );
 }

@@ -20,7 +20,7 @@ export function BudgetAvailable() {
   remaining = CurrencyFormatter(budget - remaining);
   return (
     <div className="ml-9">
-      <lable htmlFor="budget" className="ml-4 text-2xl font-semibold">
+      <lable htmlFor="budget" className="ml-4 text-2xl font-semibold dark:text-slate-300">
         Remaining Budget
       </lable>
       <div
