@@ -37,7 +37,7 @@ export function LogInComponent() {
           <div className="mb-2">
             <label
               htmlFor="email"
-              className="block text-sm font-semibold text-gray-800"
+              className="block text-sm font-semibold text-gray-800 dark:text-gray-300"
             >
               Email
             </label>
@@ -50,7 +50,7 @@ export function LogInComponent() {
           <div className="mb-2">
             <label
               htmlFor="password"
-              className="block text-sm font-semibold text-gray-800"
+              className="block text-sm font-semibold text-gray-800 dark:text-gray-300"
             >
               Password
             </label>
