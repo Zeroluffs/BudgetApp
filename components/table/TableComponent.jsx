@@ -108,7 +108,7 @@ export function TableComponent({ setMode, setExpense }) {
       try {
         await dispatch(deleteExpense(expenseID)).unwrap();
       } catch (error) {
-        console.log(error);
+        window.alert("Error with the Token");
       }
     };
     await apiCall(expenseID);

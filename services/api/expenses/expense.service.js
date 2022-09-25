@@ -1,7 +1,6 @@
 import jwt_decode from "jwt-decode";
 import { api } from "../../../utils/ApiRoute";
-import dynamic from "next/dynamic";
-import { tokenConfig, getToken } from "../../../utils/AuthorizationHeader";
+import { getToken } from "../../../utils/AuthorizationHeader";
 
 const addExpense = async (expense) => {
   var jwtToken = localStorage.getItem("jwtToken");
