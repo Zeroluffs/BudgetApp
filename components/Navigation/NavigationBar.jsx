@@ -3,6 +3,7 @@ import { AuthContext } from "../../context/auth";
 import { Switcher } from "../darkmode/Switcher";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { app_title, sign_out, sign_in, sign_up } from "./constants";
 
 export function NavigationBar({ fixed }) {
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -28,7 +29,7 @@ export function NavigationBar({ fixed }) {
               className="flex items-center px-3 py-2 text-xs font-bold leading-snug text-white uppercase hover:opacity-75"
             >
               <i className="text-lg text-white opacity-75 fab fa-facebook-square leading-lg"></i>
-              <span className="ml-2">Sign Out</span>
+              <span className="ml-2">{sign_out}</span>
             </button>
           </li>
         </ul>
@@ -40,7 +41,7 @@ export function NavigationBar({ fixed }) {
             <Link href="/">
               <a className="flex items-center px-3 py-2 text-xs font-bold leading-snug text-white uppercase hover:opacity-75">
                 <i className="text-lg text-white opacity-75 fab fa-facebook-square leading-lg"></i>
-                <span className="ml-2">Sign In</span>
+                <span className="ml-2">{sign_in}</span>
               </a>
             </Link>
           </li>
@@ -48,7 +49,7 @@ export function NavigationBar({ fixed }) {
             <Link href="/signup">
               <a className="flex items-center px-3 py-2 text-xs font-bold leading-snug text-white uppercase hover:opacity-75">
                 <i className="text-lg text-white opacity-75 fab fa-twitter leading-lg"></i>
-                <span className="ml-2">Sign Up</span>
+                <span className="ml-2">{sign_up}</span>
               </a>
             </Link>
           </li>
@@ -64,7 +65,7 @@ export function NavigationBar({ fixed }) {
           <div className="container flex flex-wrap items-center justify-between px-4 mx-auto">
             <div className="relative flex justify-between w-full lg:w-auto lg:static lg:block lg:justify-start">
               <a className="inline-block py-2 mr-4 text-sm font-bold leading-relaxed text-white uppercase whitespace-nowrap">
-                Budget App
+                {app_title}
               </a>
             </div>
             <div
