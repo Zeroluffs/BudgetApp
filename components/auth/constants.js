@@ -1,0 +1,10 @@
+export const email_str = "Email";
+export const username_str = "Username";
+export const password_str = "Password";
+export const confirm_password_str = "Confirm Password";
+export const login_btn = "Login";
+export const forget_password = "Forget Password?";
+export const sign_up_btn = "Sign Up";
+export const sign_in_btn = "Sign In"
+export const not_account = "Do not have an account?";
+export const already_account = "Already have an account?";

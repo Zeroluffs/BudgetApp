@@ -5,6 +5,15 @@ import { AuthContext } from "../../context/auth";
 import { RegisterUser } from "../../services/api/auth/Register";
 import { useDispatch } from "react-redux";
 import { fetchExpenses } from "../../slices/expenses";
+import {
+  username_str,
+  confirm_password_str,
+  password_str,
+  sign_up_btn,
+  already_account,
+  forget_password,
+  sign_in_btn,
+} from "./constants";
 
 export function SignUpComponent() {
   const dispatch = useDispatch();
@@ -45,7 +54,7 @@ export function SignUpComponent() {
               htmlFor="username"
               className="block text-sm font-semibold text-gray-800 dark:text-gray-300"
             >
-              Username
+              {username_str}
             </label>
             <input
               id="username"
@@ -58,7 +67,7 @@ export function SignUpComponent() {
               htmlFor="password"
               className="block text-sm font-semibold text-gray-800 dark:text-gray-300"
             >
-              Password
+              {password_str}
             </label>
             <input
               id="password"
@@ -71,7 +80,7 @@ export function SignUpComponent() {
               htmlFor="confirmPassword"
               className="block text-sm font-semibold text-gray-800 dark:text-gray-300"
             >
-              Confirm Password
+              {confirm_password_str}
             </label>
             <input
               id="confirmPassword"
@@ -80,20 +89,20 @@ export function SignUpComponent() {
             />
           </div>
           <a href="#" className="text-xs text-blue-500 hover:underline">
-            Forget Password?
+            {forget_password}
           </a>
           <div className="mt-6">
             <button className="w-full px-4 py-2 tracking-wide transition-colors duration-200 transform bg-blue-500 rounded-md text-slate-200 dark:text-slate-600 dark:bg-blue-300 hover:bg-blue-600 dark:hover:bg-blue-400 focus:outline-none focus:bg-blue-600">
-              Sign Up
+              {sign_up_btn}{" "}
             </button>
           </div>
         </form>
         <p className="mt-8 text-xs font-light text-center text-gray-700 dark:text-slate-200">
           {" "}
-          Already have an account?{" "}
+          {already_account}{" "}
           <Link href="/">
             <a className="font-medium text-blue-600 dark:text-blue-300 hover:underline">
-              Sign in
+              {sign_in_btn}{" "}
             </a>
           </Link>
         </p>

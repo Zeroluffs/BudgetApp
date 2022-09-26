@@ -5,6 +5,12 @@ import { AuthContext } from "../../context/auth";
 import { logUser } from "../../services/api/auth/Login";
 import { useDispatch } from "react-redux";
 import { fetchExpenses } from "../../slices/expenses";
+import {
+  username_str,
+  password_str,
+  login_btn,
+  not_account,
+} from "./constants";
 
 export function LogInComponent() {
   const dispatch = useDispatch();
@@ -39,7 +45,7 @@ export function LogInComponent() {
               htmlFor="email"
               className="block text-sm font-semibold text-gray-800 dark:text-gray-300"
             >
-              Email
+              {username_str}
             </label>
             <input
               id="username"
@@ -52,7 +58,7 @@ export function LogInComponent() {
               htmlFor="password"
               className="block text-sm font-semibold text-gray-800 dark:text-gray-300"
             >
-              Password
+              {password_str}
             </label>
             <input
               id="password"
@@ -68,13 +74,13 @@ export function LogInComponent() {
           </a>
           <div className="mt-6">
             <button className="w-full px-4 py-2 tracking-wide transition-colors duration-200 transform bg-blue-500 rounded-md text-slate-200 dark:text-slate-600 dark:bg-blue-300 hover:bg-blue-600 dark:hover:bg-blue-400 focus:outline-none focus:bg-blue-600">
-              Login
+              {login_btn}
             </button>
           </div>
         </form>
         <p className="mt-8 text-xs font-light text-center text-gray-700 dark:text-slate-200">
           {" "}
-          Do not have an account?{" "}
+          {not_account} {""}
           <Link href="/signup">
             <a className="font-medium text-blue-600 dark:text-blue-300 hover:underline">
               Sign up
