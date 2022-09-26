@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../context/auth";
-import { CurrencyFormatter } from "../../utils/CurrencyFormater";
+import { budget_btn } from "./constants";
 
 const InlineEdit = ({ value, setValue }) => {
   const [editingValue, setEditingValue] = useState(value);
@@ -59,7 +59,7 @@ export function Budget() {
         htmlFor="budget"
         className="m-auto ml-20 text-2xl font-semibold dark:text-slate-300"
       >
-        Budget
+        {budget_btn}
       </lable>
       {value !== undefined && <InlineEdit value={value} setValue={setValue} />}
 

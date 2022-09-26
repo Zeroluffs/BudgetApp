@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addExpense } from "../../slices/expenses";
+import { expense_name, cost_str, add_expense } from "./constants";
 
 export function ExpenseAddComponent({
   setMode,
@@ -29,7 +30,7 @@ export function ExpenseAddComponent({
         type="submit"
         className="w-40 mx-20 mt-8 text-xl text-white transition-colors duration-200 bg-blue-500 rounded-full dark:text-slate-600 dark:bg-blue-300 hover:bg-blue-600 h-9"
       >
-        Add Expense
+        {add_expense}
       </button>
     );
   };
@@ -47,7 +48,7 @@ export function ExpenseAddComponent({
         }}
         className="w-40 mx-20 mt-8 text-xl text-white transition-colors duration-200 bg-red-500 rounded-full hover:bg-red-700 h-9"
       >
-        Cancel
+        {cancel_str}
       </button>
     );
   };
@@ -69,7 +70,7 @@ export function ExpenseAddComponent({
     <form onSubmit={handleSubmit}>
       <div>
         <lable htmlFor="expense_name" className="text-lg dark:text-slate-300">
-          Expense Name
+          {expense_name}
         </lable>
         <input
           key={expenseToEdit.name}
@@ -83,7 +84,7 @@ export function ExpenseAddComponent({
 
       <div className="relative pt-6">
         <label htmlFor="expense_cost" className="text-lg dark:text-slate-300">
-          Cost
+          {cost_str}
         </label>
         <input
           key={expenseToEdit.cost}
